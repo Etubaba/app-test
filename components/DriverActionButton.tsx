@@ -23,7 +23,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler";
-import { useBearStore } from "../features/scudSlice";
+import { Ctx } from "../interface";
 
 const BUTTON_WIDTH = 60;
 const BUTTON_HEIGHT = 165;
@@ -41,13 +41,11 @@ function DriverActionButton() {
   const Y = useSharedValue<number>(0);
   const [toggled, setToggled] = useState<Boolean>(true);
 
-
-
   const animateGestureHandler = useAnimatedGestureHandler({
-    onStart: (_, ctx) => {
+    onStart: (_, ctx: Ctx) => {
       ctx.completed = toggled;
     },
-    onActive: (e, ctx) => {
+    onActive: (e, ctx: Ctx) => {
       let newValue;
       if (ctx.completed) {
         newValue = V_SWIPE_RANGE + e.translationY;
