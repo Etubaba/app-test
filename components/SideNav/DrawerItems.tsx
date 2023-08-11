@@ -10,7 +10,7 @@ const DrawerItems = ({ label, onPress, icon }: DrawerItemsprops) => {
 
   return (
     <PlatformPressable onPress={onPress}>
-      <View className="w-full space-x-5 flex my-1.5 ml-4 flex-row items-center p-2">
+      <View className="w-full space-x-5 flex my-1.5 ml-3 flex-row items-center p-2">
         <IconImage
           source={icon}
           accessible={true}
