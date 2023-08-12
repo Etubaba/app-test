@@ -1,18 +1,29 @@
 import { StatusBar } from "expo-status-bar";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Dimensions,
+} from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { EvilIcons, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Image as SvgImage } from "expo-image";
 import PromoImage from "../assets/promo.svg";
-import { DrawerContentComponentProps } from "@react-navigation/drawer/lib/typescript/src/types";
-import { useNavigation } from "@react-navigation/native";
+import TimerIcon from "../assets/ic_outline-timer.svg";
+import Text from "../components/common/Text";
+
 import DriverActionButton from "../components/DriverActionButton";
 import { useScudStore } from "../features/store";
 import React from "react";
+import { withTiming } from "react-native-reanimated";
 
 export default function Home() {
   const ScudStore = useScudStore((state) => state);
+  const DeviceHeight = Dimensions.get("window").height;
+  withTiming
+  // console.log(DeviceHeight);
 
   return (
     <View className="flex-1  items-center justify-center bg-white">
@@ -21,13 +32,13 @@ export default function Home() {
       <TouchableOpacity
         onPress={() => ScudStore?.DrawerProps?.navigation.openDrawer()}
         activeOpacity={0.6}
-        className="rounded-full absolute top-16 left-5 bg-white w-12 h-12 p-2 shadow-lg flex items-center justify-center"
+        className="rounded-full absolute top-[6%] left-5 bg-white w-12 h-12 p-2 shadow-lg flex items-center justify-center"
       >
         <EvilIcons name="navicon" size={24} color="black" />
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.6}
-        className="rounded-full absolute top-16 right-5 bg-white w-12 h-12 shadow-lg p-2 flex items-center justify-center"
+        className="rounded-full absolute top-[6%] right-5 bg-white w-12 h-12 shadow-lg p-2 flex items-center justify-center"
       >
         <Ionicons
           className="text-bold"
@@ -38,7 +49,11 @@ export default function Home() {
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.6}
-        className="rounded-full absolute top-[58%] right-5 bg-white w-12 h-12 shadow-lg p-2 flex items-center justify-center"
+        className={
+          DeviceHeight <= 736
+            ? "rounded-full absolute right-5 bg-white top-[52%] w-12 h-12 shadow-lg p-2 flex items-center justify-center"
+            : "rounded-full absolute right-5 bg-white top-[58%] w-12 h-12 shadow-lg p-2 flex items-center justify-center"
+        }
       >
         <MaterialIcons name="my-location" size={26} color="black" />
       </TouchableOpacity>
@@ -53,7 +68,7 @@ export default function Home() {
         <View className="border-t-[0.5px] border-gray-300 p-2 mb-10">
           {/* <DriverActionBox /> */}
 
-          <Text style={styles.font} className="text-center font-bold text-lg">
+          <Text className="text-center  font-bold text-lg">
             You’re currently offline
           </Text>
           <View className="flex-row justify-between space-x-2 pt-2 w-full h-[85%] ">
@@ -77,6 +92,13 @@ export default function Home() {
               </TouchableOpacity>
               <TouchableOpacity className="rounded-md shadow-lg border-[0.3px] bg-white flex w-full justify-between  p-3 border-gray-100 h-20">
                 <View className="flex-row justify-between items-center">
+                  <SvgImage
+                    source={TimerIcon}
+                    accessible={true}
+                    className="w-5 h-5 "
+                    contentFit="contain"
+                    transition={1000}
+                  />
                   <Text className="text-gray-400 text-[12px]">Time Online</Text>
                   <MaterialIcons
                     name="keyboard-arrow-right"

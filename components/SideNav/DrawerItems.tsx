@@ -1,9 +1,10 @@
-import { View, Text, TouchableNativeFeedback } from "react-native";
+import { View, TouchableNativeFeedback } from "react-native";
 import React, { useState } from "react";
 import { DrawerItem } from "@react-navigation/drawer";
 import { Image as IconImage } from "expo-image";
 import { DrawerItemsprops } from "../../interface";
 import { PlatformPressable } from "@react-navigation/elements";
+import Text from "../../components/common/Text";
 
 const DrawerItems = ({ label, onPress, icon }: DrawerItemsprops) => {
   const [rippleOverflow, setRippleOverflow] = useState<boolean>(false);

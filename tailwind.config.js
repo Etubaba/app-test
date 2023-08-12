@@ -17,6 +17,7 @@ module.exports = {
         scudLightBlue: "#F2F5FF",
         scudDarkMode: "#060914",
       },
+     
     },
   },
 

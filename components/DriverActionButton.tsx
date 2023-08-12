@@ -3,7 +3,6 @@ import {
   Image,
   Platform,
   StyleSheet,
-  Text,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -24,6 +23,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Ctx } from "../interface";
+import Text from "../components/common/Text";
+
+
 
 const BUTTON_WIDTH = 60;
 const BUTTON_HEIGHT = 165;

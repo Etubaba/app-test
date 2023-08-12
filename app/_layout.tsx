@@ -24,10 +24,11 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
     ScudStore.setDrawerProps(props);
   }, []);
   return (
-    <DrawerContentScrollView {...props}>
-      {/* <DrawerItemList {...props} /> */}
+    <>
       <UserHeader />
-      <View className="mt-28">
+      <DrawerContentScrollView className="" {...props}>
+        {/* <DrawerItemList {...props} /> */}
+        {/* <View className=""> */}
         {NavLink().map((items, index) => (
           <DrawerItems
             key={index}
@@ -38,15 +39,16 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
             icon={items.icon}
           />
         ))}
-      </View>
-    </DrawerContentScrollView>
+        {/* </View> */}
+      </DrawerContentScrollView>
+    </>
   );
 }
 SplashScreen.preventAutoHideAsync();
 
 export default function () {
   const [fontsLoaded, fontError] = useFonts({
-    Gilroy: require("../assets/fonts/Gilroy-Black.ttf"),
+    Gilroy: require("../assets/fonts/Gilroy-Medium.ttf"),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -58,6 +60,7 @@ export default function () {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
       <Drawer
