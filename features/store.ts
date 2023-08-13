@@ -1,6 +1,10 @@
 import { create } from 'zustand'
 import { createJSONStorage, devtools, persist } from 'zustand/middleware'
-import scudSlice from './scudSlice'
+import { scudSlice, themeSlice, userSlice } from './scudSlice'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-export const useScudStore = create(persist(devtools(scudSlice), { name: 'user_id', storage: createJSONStorage(() => AsyncStorage) }))
+export const useScudStore = create(devtools(scudSlice))
+// export const useUserStore = create(persist(devtools(userSlice), { name: 'user_details', storage: createJSONStorage(() => AsyncStorage) }))
+export const useUserStore = create(devtools(userSlice))
+export const useThemeStore = create(persist(devtools(themeSlice), { name: 'theme', storage: createJSONStorage(() => AsyncStorage) }))
+

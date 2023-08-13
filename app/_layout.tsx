@@ -1,4 +1,4 @@
-import { Slot, useNavigation } from "expo-router";
+import { Slot, useNavigation, useRootNavigationState } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 import { View, Text, Linking, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
@@ -16,6 +16,7 @@ import DrawerItems from "../components/SideNav/DrawerItems";
 import React from "react";
 import NavLink from "../components/SideNav/NavLinks";
 import UserHeader from "../components/SideNav/UserHeader";
+import { Provider } from "../Provider/auth";
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
   const ScudStore = useScudStore((state) => state);
@@ -26,9 +27,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <>
       <UserHeader />
-      <DrawerContentScrollView className="" {...props}>
-        {/* <DrawerItemList {...props} /> */}
-        {/* <View className=""> */}
+      <DrawerContentScrollView className="dark:bg-slate-800" {...props}>
         {NavLink().map((items, index) => (
           <DrawerItems
             key={index}
@@ -39,7 +38,6 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
             icon={items.icon}
           />
         ))}
-        {/* </View> */}
       </DrawerContentScrollView>
     </>
   );
@@ -50,6 +48,7 @@ export default function () {
   const [fontsLoaded, fontError] = useFonts({
     Gilroy: require("../assets/fonts/Gilroy-Medium.ttf"),
   });
+  const rootNavigationState = useRootNavigationState();
 
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
@@ -63,20 +62,24 @@ export default function () {
 
   return (
     <SafeAreaProvider onLayout={onLayoutRootView}>
-      <Drawer
-        defaultStatus="closed"
-        drawerContent={(props: DrawerContentComponentProps) => (
-          <CustomDrawerContent {...props} />
-        )}
-        screenOptions={{
-          headerShown: false,
-          drawerType: "front",
-          drawerStyle: {
-            borderBottomEndRadius: 50,
-            borderTopEndRadius: 50,
-          },
-        }}
-      />
+      <Provider>
+        <Drawer
+          defaultStatus="closed"
+          drawerContent={(props: DrawerContentComponentProps) => (
+            <CustomDrawerContent {...props} />
+          )}
+          screenOptions={{
+            // drawerHideStatusBarOnOpen: true,
+            swipeEnabled: false,
+            headerShown: false,
+            drawerType: "front",
+            drawerStyle: {
+              borderBottomEndRadius: 50,
+              borderTopEndRadius: 50,
+            },
+          }}
+        />
+      </Provider>
     </SafeAreaProvider>
   );
 }

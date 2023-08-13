@@ -6,6 +6,7 @@ module.exports = {
     "./components/**/*.{js,jsx,ts,tsx}",
     "./screens/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: "class",
 
   theme: {
     extend: {
@@ -17,7 +18,6 @@ module.exports = {
         scudLightBlue: "#F2F5FF",
         scudDarkMode: "#060914",
       },
-     
     },
   },
 

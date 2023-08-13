@@ -3,8 +3,9 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  View,
+  View as View2,
   Dimensions,
+  Platform,
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -15,18 +16,21 @@ import TimerIcon from "../assets/ic_outline-timer.svg";
 import Text from "../components/common/Text";
 
 import DriverActionButton from "../components/DriverActionButton";
-import { useScudStore } from "../features/store";
+import { useScudStore, useThemeStore } from "../features/store";
 import React from "react";
 import { withTiming } from "react-native-reanimated";
+import { COLORS } from "../constants/Theme";
+import View from "../components/common/View";
+import { modes } from "../interface";
 
 export default function Home() {
   const ScudStore = useScudStore((state) => state);
   const DeviceHeight = Dimensions.get("window").height;
-  withTiming
+  const { theme } = useThemeStore((state) => state);
   // console.log(DeviceHeight);
 
   return (
-    <View className="flex-1  items-center justify-center bg-white">
+    <View2 className="flex-1  items-center justify-center ">
       <StatusBar style="auto" />
       <MapView provider={PROVIDER_GOOGLE} style={styles.map}></MapView>
       <TouchableOpacity
@@ -71,89 +75,191 @@ export default function Home() {
           <Text className="text-center  font-bold text-lg">
             You’re currently offline
           </Text>
-          <View className="flex-row justify-between space-x-2 pt-2 w-full h-[85%] ">
-            <View className="w-36 space-y-2">
-              <TouchableOpacity className="rounded-md shadow-lg border-[0.3px] bg-white flex justify-between  p-3 border-gray-100 h-20">
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-gray-400 text-[12px]">
-                    Today’s Earnings
-                  </Text>
-                  <MaterialIcons
-                    name="keyboard-arrow-right"
-                    size={15}
-                    color="gray"
-                  />
-                </View>
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-black font-bold  text-[18px]">
-                    ₦2,389
-                  </Text>
+          <View className="flex-row justify-between  items-center  pt-2 w-full h-[85%] ">
+            <View
+              className={
+                Platform.OS == "android" ? "w-36 space-y-2" : "w-40 space-y-2"
+              }
+            >
+              <TouchableOpacity>
+                <View
+                  Dark
+                  DarkColor="#23293B"
+                  className={
+                    theme == modes.light
+                      ? "rounded-md shadow-lg border-[0.3px] p-3  flex justify-between   border-gray-100 h-20"
+                      : "rounded-md shadow-lg border-[0.2px] p-3  flex justify-between   border-gray-700 h-20"
+                  }
+                >
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row justify-between items-center"
+                  >
+                    <Text
+                      Light
+                      LightColor={COLORS.textColor}
+                      className="text-gray-400 text-[12px]"
+                    >
+                      Today’s Earnings
+                    </Text>
+                    <MaterialIcons
+                      name="keyboard-arrow-right"
+                      size={15}
+                      color="gray"
+                    />
+                  </View>
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row justify-between items-center"
+                  >
+                    <Text className="text-black font-bold  text-[18px]">
+                      ₦2,389
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity className="rounded-md shadow-lg border-[0.3px] bg-white flex w-full justify-between  p-3 border-gray-100 h-20">
-                <View className="flex-row justify-between items-center">
-                  <SvgImage
-                    source={TimerIcon}
-                    accessible={true}
-                    className="w-5 h-5 "
-                    contentFit="contain"
-                    transition={1000}
-                  />
-                  <Text className="text-gray-400 text-[12px]">Time Online</Text>
-                  <MaterialIcons
-                    name="keyboard-arrow-right"
-                    size={15}
-                    color="gray"
-                  />
-                </View>
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-black font-bold  text-[18px]">
-                    00hr:50min
-                  </Text>
+
+              <TouchableOpacity>
+                <View
+                  Dark
+                  DarkColor="#23293B"
+                  className={
+                    theme == modes.light
+                      ? "rounded-md shadow-lg border-[0.3px] p-3  flex justify-between   border-gray-100 h-20"
+                      : "rounded-md shadow-lg border-[0.2px] p-3  flex justify-between   border-gray-700 h-20"
+                  }
+                >
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row justify-between items-center"
+                  >
+                    <SvgImage
+                      source={TimerIcon}
+                      accessible={true}
+                      className="w-5 h-5 "
+                      contentFit="contain"
+                      transition={1000}
+                    />
+                    <Text
+                      Light
+                      LightColor={COLORS.textColor}
+                      className="text-gray-400 text-[12px]"
+                    >
+                      Time Online
+                    </Text>
+                    <MaterialIcons
+                      name="keyboard-arrow-right"
+                      size={15}
+                      color="gray"
+                    />
+                  </View>
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row justify-between items-center"
+                  >
+                    <Text className="text-black font-bold  text-[18px]">
+                      00hr:50min
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             </View>
             <DriverActionButton />
-            <View className="w-36 space-y-2">
-              <TouchableOpacity className="rounded-md shadow-lg border-[0.3px] bg-white flex justify-between  p-3 border-gray-100 h-20">
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-gray-400 text-[12px]">
-                    Accepatance Rate
-                  </Text>
-                  <MaterialIcons
-                    name="keyboard-arrow-right"
-                    size={15}
-                    color="gray"
-                  />
-                </View>
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-black font-bold  text-[18px]">
-                    95.5%
-                  </Text>
+            <View
+              className={
+                Platform.OS == "android" ? "w-36 space-y-2" : "w-40 space-y-2"
+              }
+            >
+              <TouchableOpacity>
+                <View
+                  Dark
+                  DarkColor="#23293B"
+                  className={
+                    theme == modes.light
+                      ? "rounded-md shadow-lg border-[0.3px] p-3  flex justify-between   border-gray-100 h-20"
+                      : "rounded-md shadow-lg border-[0.2px] p-3  flex justify-between   border-gray-700 h-20"
+                  }
+                >
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row rounded-md justify-between items-center "
+                  >
+                    <Text
+                      Light
+                      LightColor={COLORS.textColor}
+                      className="text-gray-400 text-[12px]"
+                    >
+                      Accepatance Rate
+                    </Text>
+                    <MaterialIcons
+                      name="keyboard-arrow-right"
+                      size={15}
+                      color="gray"
+                    />
+                  </View>
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row rounded-md  justify-between  items-center"
+                  >
+                    <Text className="text-black  font-bold  text-[18px]">
+                      95.5%
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity className="rounded-md shadow-lg border-[0.3px] bg-white flex justify-between  p-3 border-gray-100 h-20">
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-gray-400 text-[12px]">
-                    Cancellation Rate
-                  </Text>
-                  <MaterialIcons
-                    name="keyboard-arrow-right"
-                    size={15}
-                    color="gray"
-                  />
-                </View>
-                <View className="flex-row justify-between items-center">
-                  <Text className="text-black font-bold  text-[18px]">
-                    10.5%
-                  </Text>
+              <TouchableOpacity>
+                <View
+                  Dark
+                  DarkColor="#23293B"
+                  className={
+                    theme == modes.light
+                      ? "rounded-md shadow-lg border-[0.3px] p-3  flex justify-between   border-gray-100 h-20"
+                      : "rounded-md shadow-lg border-[0.2px] p-3  flex justify-between   border-gray-700 h-20"
+                  }
+                >
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row justify-between items-center"
+                  >
+                    <Text
+                      Light
+                      LightColor={COLORS.textColor}
+                      className="text-gray-400 text-[12px]"
+                    >
+                      Cancellation Rate
+                    </Text>
+                    <MaterialIcons
+                      name="keyboard-arrow-right"
+                      size={15}
+                      color="gray"
+                    />
+                  </View>
+                  <View
+                    Dark
+                    DarkColor="#23293B"
+                    className="flex-row justify-between items-center"
+                  >
+                    <Text
+                      EnableCStyle
+                      className="text-red-500 font-bold  text-[18px]"
+                    >
+                      10.5%
+                    </Text>
+                  </View>
                 </View>
               </TouchableOpacity>
             </View>
           </View>
         </View>
       </View>
-    </View>
+    </View2>
   );
 }
 

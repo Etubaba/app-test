@@ -25,8 +25,6 @@ import { PanGestureHandler } from "react-native-gesture-handler";
 import { Ctx } from "../interface";
 import Text from "../components/common/Text";
 
-
-
 const BUTTON_WIDTH = 60;
 const BUTTON_HEIGHT = 165;
 const BUTTON_PADDING = 18;
@@ -149,19 +147,33 @@ function DriverActionButton() {
           <Animated.View
             style={[animatedStyle.swipeText]}
             className={
-              "space-y-3 transition-all flex flex-col relative -top-4  items-center"
+              "space-y-6 transition-all flex flex-col relative -top-4  items-center"
             }
           >
-            <Text className=" text-lg -rotate-90  text-white">Online</Text>
-            <Text className="  text-lg -rotate-90 w-full text-white">Go</Text>
+            <Text EnableCStyle className=" text-lg -rotate-90  text-white">
+              Online
+            </Text>
+            <Text
+              EnableCStyle
+              className="  text-lg -rotate-90 w-full text-white"
+            >
+              Go
+            </Text>
           </Animated.View>
         ) : (
           <Animated.View
             style={[animatedStyle.swipeText]}
-            className={"space-y-3 flex flex-col items-center"}
+            className={"space-y-6 flex flex-col items-center"}
           >
-            <Text className="  text-lg rotate-90 w-full text-white">Go</Text>
-            <Text className=" text-lg rotate-90  text-white">Offline</Text>
+            <Text
+              EnableCStyle
+              className="  text-lg rotate-90 w-full text-white"
+            >
+              Go
+            </Text>
+            <Text EnableCStyle className=" text-lg rotate-90  text-white">
+              Offline
+            </Text>
           </Animated.View>
         )}
       </Animated.View>

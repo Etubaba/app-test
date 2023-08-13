@@ -1,5 +1,6 @@
-import { Text as Text2, StyleSheet } from "react-native";
-import { TextProps, modes } from "../../interface";
+import { View as View2, Text } from "react-native";
+import React from "react";
+import { ViewProps, modes } from "../../interface";
 import Animated, {
   interpolateColor,
   useAnimatedStyle,
@@ -9,7 +10,7 @@ import Animated, {
 import { useThemeStore } from "../../features/store";
 import { MODES } from "../../constants/Theme";
 
-const Text: React.FC<TextProps> = ({
+const View: React.FC<ViewProps> = ({
   EnableCStyle,
   style,
   children,
@@ -26,20 +27,20 @@ const Text: React.FC<TextProps> = ({
   const animatedStyle = {
     colorSchemes: useAnimatedStyle(() => {
       return {
-        color: interpolateColor(
+        backgroundColor: interpolateColor(
           progress.value,
           [0, 1],
           [
             Light
               ? typeof LightColor == "string" || LightColor == "number"
                 ? LightColor
-                : MODES.light.color
-              : MODES.light.color,
+                : MODES.light.backgroundColor
+              : MODES.light.backgroundColor,
             Dark
               ? typeof DarkColor == "string" || DarkColor == "number"
                 ? DarkColor
-                : MODES.dark.color
-              : MODES.dark.color,
+                : MODES.dark.backgroundColor
+              : MODES.dark.backgroundColor,
           ]
         ),
       };
@@ -47,21 +48,13 @@ const Text: React.FC<TextProps> = ({
   };
 
   return (
-    <Animated.Text
+    <Animated.View
       className={className}
-      style={
-        EnableCStyle
-          ? [defaultStyle.default, style]
-          : [defaultStyle.default, style, animatedStyle.colorSchemes]
-      }
+      style={EnableCStyle ? [style] : [style, animatedStyle.colorSchemes]}
     >
       {children}
-    </Animated.Text>
+    </Animated.View>
   );
 };
-export default Text;
-const defaultStyle = StyleSheet.create({
-  default: {
-    fontFamily: "Gilroy",
-  },
-});
+
+export default View;
