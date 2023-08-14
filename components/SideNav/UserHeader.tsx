@@ -1,4 +1,4 @@
-import { View } from "react-native";
+import { View as View2 } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -10,6 +10,7 @@ import { useColorScheme } from "nativewind";
 import { useThemeStore } from "../../features/store";
 import { modes } from "../../interface";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import View from "../common/View";
 
 const UserHeader = () => {
   const blurhash =
@@ -21,9 +22,9 @@ const UserHeader = () => {
 
   return (
     <>
-      <View className="w-full border-b z-10 bg-scudBlue  space-x-5 flex py-10  rounded-tr-[50px] border-textColor/10 flex-row items-center p-2">
-        <View className="w-full mt-8 space-x-3 flex py-10  rounded-tr-[50px] border-textColor/10 flex-row items-center p-2">
-          <View className="rounded-full  w-16 h-16 border border-white">
+      <View2 className="w-full border-b z-10 bg-scudBlue  space-x-5 flex py-10  rounded-tr-[50px] border-textColor/10 flex-row items-center p-2">
+        <View2 className="w-full mt-8 space-x-3 flex py-10  rounded-tr-[50px] border-textColor/10 flex-row items-center p-2">
+          <View2 className="rounded-full  w-16 h-16 border border-white">
             <Image
               className="rounded-full  flex-1"
               source={require("../../dummy/assets/Ellipse_6.png")}
@@ -31,13 +32,13 @@ const UserHeader = () => {
               contentFit="cover"
               transition={1000}
             />
-          </View>
-          <View className="flex flex-row space-x-8 items-center">
-            <View className="space-y-1">
+          </View2>
+          <View2 className="flex flex-row space-x-8 items-center">
+            <View2 className="space-y-1">
               <Text EnableCStyle className="text-xl text-white">
                 Shola Daniel
               </Text>
-              <View className="flex flex-row space-x-1">
+              <View2 className="flex flex-row space-x-1">
                 <AntDesign
                   name="star"
                   size={13}
@@ -66,8 +67,8 @@ const UserHeader = () => {
                 <Text EnableCStyle className="text-white">
                   3.0
                 </Text>
-              </View>
-            </View>
+              </View2>
+            </View2>
             {theme == modes.light ? (
               <TouchableOpacity
                 onPress={() => setTheme(modes.dark)}
@@ -80,24 +81,26 @@ const UserHeader = () => {
                 onPress={() => setTheme(modes.light)}
                 className="flex flex-row items-baseline pt-7"
               >
-                <MaterialCommunityIcons
-                  name="moon-full"
-                  size={24}
-                  color="white"
-                />
+                <Feather name="moon" size={24} color="white" />
               </TouchableOpacity>
             )}
-          </View>
-        </View>
-      </View>
-      <View className="w-full dark:bg-slate-800 bg-scudLightBlue px-5  h-16  flex justify-between flex-row items-center ">
+          </View2>
+        </View2>
+      </View2>
+      <View
+        Light
+        LightColor={COLORS.scudLightBlue}
+        Dark
+        DarkColor="#23293B"
+        className="w-full  bg-scudLightBlue px-5  h-16  flex justify-between flex-row items-center "
+      >
         <Text className="text-base font-bold">Sub-drivers</Text>
         <TouchableOpacity className="rounded-xl">
-          <View className="flex border border-scudBlue rounded-xl  flex-row space-x-3 items-center p-1 px-2">
-            <AntDesign name="plus" size={20} color={COLORS.scudBlue} />
+          <View2 className="flex border border-scudBlue rounded-xl  flex-row space-x-3 items-center p-1 px-2">
+            <AntDesign name="plus" size={18} color={COLORS.scudBlue} />
 
             <Text className="text-base text-scudBlue">Add</Text>
-          </View>
+          </View2>
         </TouchableOpacity>
       </View>
     </>

@@ -43,6 +43,13 @@ export interface ViewProps {
     LightColor?: string
 }
 
+export interface ButtonProps {
+    style?: StyleProp<ViewStyle> | undefined;
+    children?: React.ReactNode;
+    className?: string
+    onPress: (((event: GestureResponderEvent) => void) & (() => void)) | undefined
+}
+
 export interface AuthContextType {
     user: unknown;
     signIn: () => void;
@@ -53,4 +60,11 @@ export interface AuthContextType {
 export enum modes {
     dark = 'dark',
     light = "light"
+}
+
+export interface OnBoardingItem {
+    id: string
+    image: any
+    title: string
+    subtitle: string
 }

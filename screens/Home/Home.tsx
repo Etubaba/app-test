@@ -11,17 +11,17 @@ import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { EvilIcons, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Image as SvgImage } from "expo-image";
-import PromoImage from "../assets/promo.svg";
-import TimerIcon from "../assets/ic_outline-timer.svg";
-import Text from "../components/common/Text";
+import PromoImage from "../../assets/promo.svg";
+import TimerIcon from "../../assets/ic_outline-timer.svg";
+import Text from "../../components/common/Text";
 
-import DriverActionButton from "../components/DriverActionButton";
-import { useScudStore, useThemeStore } from "../features/store";
+import DriverActionButton from "../../components/DriverActionButton";
+import { useScudStore, useThemeStore } from "../../features/store";
 import React from "react";
 import { withTiming } from "react-native-reanimated";
-import { COLORS } from "../constants/Theme";
-import View from "../components/common/View";
-import { modes } from "../interface";
+import { COLORS } from "../../constants/Theme";
+import View from "../../components/common/View";
+import { modes } from "../../interface";
 
 export default function Home() {
   const ScudStore = useScudStore((state) => state);

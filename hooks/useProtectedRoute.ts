@@ -6,25 +6,21 @@ import React from "react";
 
 
 
-function useProtectedRoute(user: any) {
+function useProtectedRoute(user: any, IsFirstTimeLoad: any) {
     const segments = useSegments();
     const rootNavigationState = useRootNavigationState();
 
-    // console.log(segments, rootNavigationState);
-
+    // console.timeLog()
 
     React.useEffect(() => {
         if (rootNavigationState?.key) {
             const inAuthGroup = segments[0] === "(auth)";
+            // console.log(segments, IsFirstTimeLoad);
+            if (user == null &&
+                !inAuthGroup) {
+                // router.push("/register")
+                if (IsFirstTimeLoad) { router.push("/welcome") } else { router.push("/register"); }
 
-            if (
-                // If the user is not signed in and the initial segment is not anything in the auth group.
-                // user == null || !isLoggedIn &&
-                // !inAuthGroup
-                user == null &&
-                !inAuthGroup
-            ) {
-                router.push("/register");
             } else if (user && inAuthGroup) {
                 router.push("/");
             }

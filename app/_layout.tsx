@@ -10,13 +10,19 @@ import {
   DrawerItemList,
 } from "@react-navigation/drawer";
 import { useCallback, useEffect } from "react";
-import { useScudStore } from "../features/store";
+import {
+  useOnBoardingStore,
+  useScudStore,
+  useThemeStore,
+} from "../features/store";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import DrawerItems from "../components/SideNav/DrawerItems";
 import React from "react";
 import NavLink from "../components/SideNav/NavLinks";
 import UserHeader from "../components/SideNav/UserHeader";
 import { Provider } from "../Provider/auth";
+import { modes } from "../interface";
+import { COLORS } from "../constants/Theme";
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
   const ScudStore = useScudStore((state) => state);
@@ -27,7 +33,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <>
       <UserHeader />
-      <DrawerContentScrollView className="dark:bg-slate-800" {...props}>
+      <DrawerContentScrollView className="" {...props}>
         {NavLink().map((items, index) => (
           <DrawerItems
             key={index}
@@ -48,10 +54,16 @@ export default function () {
   const [fontsLoaded, fontError] = useFonts({
     Gilroy: require("../assets/fonts/Gilroy-Medium.ttf"),
   });
-  const rootNavigationState = useRootNavigationState();
+  const { theme } = useThemeStore((state) => state);
+  const { IsFirstTimeLoad, setIsFirstTimeLoad } = useOnBoardingStore(
+    (state) => state
+  );
 
+  const rootNavigationState = useRootNavigationState();
+  if (IsFirstTimeLoad == null) setIsFirstTimeLoad(true);
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
+      // setTimeout(SplashScreen.hideAsync, 3000);
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
@@ -76,6 +88,8 @@ export default function () {
             drawerStyle: {
               borderBottomEndRadius: 50,
               borderTopEndRadius: 50,
+              backgroundColor:
+                theme == modes.light ? COLORS.scudWhite : COLORS.scudDarkMode2,
             },
           }}
         />

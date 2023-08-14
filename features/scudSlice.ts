@@ -30,5 +30,12 @@ export const themeSlice = (set: any) => ({
         set(({ theme: by }))
     },
 
+})
+
+export const onBoardingSlice = (set: any) => ({
+    IsFirstTimeLoad: null as any,
+    setIsFirstTimeLoad: (by: boolean) => {
+        set(({ IsFirstTimeLoad: by }))
+    },
 
 })

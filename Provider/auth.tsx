@@ -2,7 +2,7 @@ import { router, useSegments } from "expo-router";
 import React, { ReactNode } from "react";
 import useProtectedRoute from "../hooks/useProtectedRoute";
 import { AuthContextType } from "../interface";
-import { useUserStore } from "../features/store";
+import { useOnBoardingStore, useUserStore } from "../features/store";
 
 export const AuthContext = React.createContext<AuthContextType | null>(null);
 
@@ -21,7 +21,9 @@ export function Provider(props: Props) {
     // shallow
   );
 
-  useProtectedRoute(user);
+  const { IsFirstTimeLoad } = useOnBoardingStore((state) => state);
+
+  useProtectedRoute(user, IsFirstTimeLoad);
 
   return (
     <AuthContext.Provider
