@@ -92,14 +92,18 @@ const UserHeader = () => {
         LightColor={COLORS.scudLightBlue}
         Dark
         DarkColor="#23293B"
-        className="w-full  bg-scudLightBlue px-5  h-16  flex justify-between flex-row items-center "
+        className="w-full  bg-scudLightBlue px-5  h-[50px]  flex justify-between flex-row items-center "
       >
-        <Text className="text-base font-bold">Sub-drivers</Text>
+        <Text Light LightColor="#0A0D14" className="text-base font-bold">
+          Sub-drivers
+        </Text>
         <TouchableOpacity className="rounded-xl">
-          <View2 className="flex border border-scudBlue rounded-xl  flex-row space-x-3 items-center p-1 px-2">
+          <View2 className="flex border border-scudBlue rounded-xl  flex-row space-x-1 items-center p-1 px-2">
             <AntDesign name="plus" size={18} color={COLORS.scudBlue} />
 
-            <Text className="text-base text-scudBlue">Add</Text>
+            <Text EnableCStyle className="text-base text-scudBlue">
+              Add
+            </Text>
           </View2>
         </TouchableOpacity>
       </View>

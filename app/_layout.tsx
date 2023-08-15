@@ -31,7 +31,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <>
       <UserHeader />
-      <DrawerContentScrollView className="" {...props}>
+      <DrawerContentScrollView className="bg-black" {...props}>
         {NavLink().map((items, index) => (
           <DrawerItems
             key={index}
