@@ -17,6 +17,7 @@ import { useOnBoardingStore } from "../../features/store";
 import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Stack } from "expo-router";
 
 const { width, height } = Dimensions.get("window");
 
@@ -109,7 +110,7 @@ const OnBoarding = () => {
 
   const handleGoToRegister = () => {
     setIsFirstTimeLoad(false);
-    router.push("/register");
+    router.push("/(auth)/register");
   };
 
   const Footer = () => {

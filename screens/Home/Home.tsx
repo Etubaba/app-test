@@ -8,7 +8,7 @@ import {
   Platform,
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { EvilIcons, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { Image as SvgImage } from "expo-image";
 import PromoImage from "../../assets/promo.svg";
@@ -30,9 +30,11 @@ export default function Home() {
   // console.log(DeviceHeight);
 
   return (
+
+    
     <View2 className="flex-1  items-center justify-center ">
       <StatusBar style="auto" backgroundColor="#ffffff00" />
-      <MapView  provider={PROVIDER_GOOGLE} style={styles.map}></MapView>
+      <MapView provider={PROVIDER_GOOGLE} style={styles.map}></MapView>
       <TouchableOpacity
         onPress={() => ScudStore?.DrawerProps?.navigation.openDrawer()}
         activeOpacity={0.6}
