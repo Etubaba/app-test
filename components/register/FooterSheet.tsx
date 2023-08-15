@@ -9,7 +9,7 @@ import Button from "../common/Button";
 
 const FooterSheet = ({}) => {
   return (
-    <KeyboardAvoidingView className="h-2/5  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full">
+    <KeyboardAvoidingView className="h-[45%]  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full">
       <View className="flex justify-center items-center">
         <View className="bg-white rounded-[20px] p-[10px]  -mt-6 ">
           <Image
@@ -32,7 +32,7 @@ const FooterSheet = ({}) => {
 
       <NumberInput />
 
-      <View className="flex flex-row space-x-2  ">
+      <View className="flex mb-5 flex-row space-x-2  ">
         <Text EnableCStyle className="text-textColor">
           Already have an account?
         </Text>
@@ -45,7 +45,7 @@ const FooterSheet = ({}) => {
         </TouchableOpacity>
       </View>
 
-      <View className="flex mt-10 space-x-1 items-center flex-row">
+      <View className="flex mb-[23.25px] mt-5 space-x-1 items-center flex-row">
         <Checkbox className="w-4 h-4 border-0.5" />
         <View className="flex space-x-1 items-center flex-row">
           <Text>I accept the company's</Text>
@@ -60,7 +60,7 @@ const FooterSheet = ({}) => {
       </View>
 
       <Button
-        className="px-[20px] py-[15px] rounded-[10px]"
+        className="px-[20px]  py-[15px] rounded-[10px]"
         onPress={() => {
           return;
         }}
