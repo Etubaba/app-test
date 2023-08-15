@@ -1,13 +1,11 @@
-import { Slot, useNavigation, useRootNavigationState } from "expo-router";
+import { useRootNavigationState } from "expo-router";
 import { Drawer } from "expo-router/drawer";
-import { View, Text, Linking, StyleSheet } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import "../styles/global.css";
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
-  DrawerItemList,
 } from "@react-navigation/drawer";
 import { useCallback, useEffect } from "react";
 import {
@@ -34,7 +32,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <>
       <UserHeader />
-      <ScrollView className="pt-5" {...props}>
+      <ScrollView className="" {...props}>
         {NavLink().map((items, index) => (
           <DrawerItems
             key={index}

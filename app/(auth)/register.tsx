@@ -5,12 +5,12 @@ import useAuth from "../../hooks/useAuth";
 import { AuthContextType } from "../../interface";
 
 const register = () => {
-  const { signIn }: AuthContextType = useAuth();
+  const authContext = useAuth();
 
   return (
     <SafeAreaView>
       <View className="text-center">
-        <Text onPress={() => signIn()}>Sign In</Text>
+        <Text onPress={() => authContext?.signIn("hi")}>Sign In</Text>
         <Text>register</Text>
       </View>
     </SafeAreaView>
