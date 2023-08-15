@@ -110,7 +110,7 @@ const OnBoarding = () => {
 
   const handleGoToRegister = () => {
     setIsFirstTimeLoad(false);
-    router.push("/register");
+    router.push("/(auth)/register");
   };
 
   const Footer = () => {

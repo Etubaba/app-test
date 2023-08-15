@@ -6,14 +6,20 @@ import { AuthContextType } from "../../../interface";
 import { StatusBar } from "expo-status-bar";
 import { Image } from "expo-image";
 import FooterSheet from "../../../components/register/FooterSheet";
+import { Stack } from "expo-router";
 
 const register = () => {
   const authContext = useAuth();
   const { width, height } = Dimensions.get("window");
 
   return (
-    <View className="bg-black">
-      <StatusBar backgroundColor="transparent" style="light" />
+    <View className="">
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+      />
+      <StatusBar backgroundColor="transparent" style="auto" />
       <Image
         contentFit="cover"
         source={require("../../../assets/onBoardingBG.png")}
