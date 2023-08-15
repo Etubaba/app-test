@@ -19,7 +19,7 @@ const register = () => {
           headerShown: false,
         }}
       />
-      <StatusBar backgroundColor="transparent" style="auto" />
+      <StatusBar backgroundColor="transparent" style="light" />
       <Image
         contentFit="cover"
         source={require("../../../assets/onBoardingBG.png")}
