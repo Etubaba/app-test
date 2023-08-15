@@ -28,8 +28,8 @@ export function Provider(props: Props) {
   return (
     <AuthContext.Provider
       value={{
-        signIn: () => {
-          setUserDetails({});
+        signIn: (e) => {
+          setUserDetails(e);
         },
         signOut: () => {
           setUserDetails(null);
