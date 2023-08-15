@@ -32,8 +32,9 @@ const NumberInput = () => {
       </TouchableOpacity>
 
       <TextInput
+        cursorColor={"#55575F"}
         keyboardType="number-pad"
-        className="w-full outline-none  c text-base"
+        className="w-full outline-none caret-slate-300 text-base"
         onBlur={() => setOutline(false)}
         onFocus={() => setOutline(true)}
         onChangeText={(value) => console.log(value)}
