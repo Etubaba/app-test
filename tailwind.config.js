@@ -17,6 +17,7 @@ module.exports = {
         scudGreen: "#00AB4C",
         scudLightBlue: "#F2F5FF",
         scudDarkMode: "#060914",
+        bordercolor: "#E6EBFF",
       },
     },
   },
