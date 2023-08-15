@@ -31,8 +31,8 @@ export default function Home() {
 
   return (
     <View2 className="flex-1  items-center justify-center ">
-      <StatusBar style="auto" />
-      <MapView provider={PROVIDER_GOOGLE} style={styles.map}></MapView>
+      <StatusBar style="auto" backgroundColor="#ffffff00" />
+      <MapView  provider={PROVIDER_GOOGLE} style={styles.map}></MapView>
       <TouchableOpacity
         onPress={() => ScudStore?.DrawerProps?.navigation.openDrawer()}
         activeOpacity={0.6}
@@ -61,7 +61,7 @@ export default function Home() {
       >
         <MaterialIcons name="my-location" size={26} color="black" />
       </TouchableOpacity>
-      <View className="absolute bottom-0  text-[50px] w-full  bg-white h-72">
+      <View className="absolute bottom-0  text-[50px] w-full  bg-white h-[35%]">
         <SvgImage
           source={PromoImage}
           accessible={true}

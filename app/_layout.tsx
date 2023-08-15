@@ -21,6 +21,7 @@ import UserHeader from "../components/SideNav/UserHeader";
 import { Provider } from "../Provider/auth";
 import { modes } from "../interface";
 import { COLORS } from "../constants/Theme";
+import { ScrollView } from "react-native-gesture-handler";
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
   const ScudStore = useScudStore((state) => state);
@@ -31,7 +32,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
   return (
     <>
       <UserHeader />
-      <DrawerContentScrollView className="bg-black" {...props}>
+      <ScrollView className="" {...props}>
         {NavLink().map((items, index) => (
           <DrawerItems
             key={index}
@@ -42,7 +43,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
             icon={items.icon}
           />
         ))}
-      </DrawerContentScrollView>
+      </ScrollView>
     </>
   );
 }

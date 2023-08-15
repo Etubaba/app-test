@@ -5,11 +5,12 @@ import {
   FlatList,
   ListRenderItemInfo,
   ListRenderItem,
+  StatusBar,
 } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { StatusBar } from "expo-status-bar";
+// import { StatusBar } from "expo-status-bar";
 import { OnBoardingItem } from "../../interface";
 import Button from "../../components/common/Button";
 import { useOnBoardingStore } from "../../features/store";
@@ -45,10 +46,10 @@ let SkipFunction: () => void;
 const Slide: ListRenderItem<OnBoardingItem> = ({ item, index }) => {
   return (
     <View
-      className={`flex-1 w-full h-full items-center relative justify-center`}
+      className={`flex-1 w-full h-full bg-black pt-10 items-center relative justify-center`}
     >
       {index == 0 && (
-        <View className="bg-transparent absolute right-0 pr-5  top-10 z-10">
+        <View className="bg-transparent absolute right-0 pr-5  top-16 z-10">
           <TouchableOpacity
             onPress={SkipFunction}
             className="flex flex-row items-center "
@@ -114,7 +115,7 @@ const OnBoarding = () => {
   const Footer = () => {
     return (
       <View
-        className={`h-full rounded-t-[13px] space-y-2 absolute px-5 top-full bg-white  w-full`}
+        className={`h-full rounded-t-[13px] space-y-2 absolute px-5 top-[98%] bg-white  w-full`}
       >
         <View className="p-5 flex flex-col space-y-3 items-center">
           <Text className="font-bold text-xl text-scudDarkMode">
@@ -131,7 +132,7 @@ const OnBoarding = () => {
                 onPress={handleGoToRegister}
                 className={`px-[20px] items-center justify-center flex flex-row py-[15px] rounded-lg `}
               >
-                <Text className="text-white">Get Started</Text>
+                <Text className="text-white">Sign up now</Text>
               </Button>
             </>
           ) : (
@@ -161,12 +162,11 @@ const OnBoarding = () => {
     );
   };
   return (
-    <SafeAreaView>
+    <View className="bg-black">
       <StatusBar
-        // hidden
+        barStyle={"light-content"}
         translucent
         backgroundColor="black"
-        style="dark"
       />
       <FlatList
         className=""
@@ -181,7 +181,7 @@ const OnBoarding = () => {
         renderItem={Slide}
       />
       <Footer />
-    </SafeAreaView>
+    </View>
   );
 };
 
