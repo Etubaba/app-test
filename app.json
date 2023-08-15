@@ -1,5 +1,8 @@
 {
   "expo": {
+    "experiments": {
+      "typedRoutes": true
+    },
     "name": "Scud Driver Lite",
     "slug": "Scud Driver",
     "version": "1.0.0",
