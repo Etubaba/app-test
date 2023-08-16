@@ -18,6 +18,7 @@ const Text: React.FC<TextProps> = ({
   Light,
   LightColor,
   DarkColor,
+  onPress,
 }) => {
   const { theme } = useThemeStore((state) => state);
   const progress = useDerivedValue(() => {
@@ -48,6 +49,7 @@ const Text: React.FC<TextProps> = ({
 
   return (
     <Animated.Text
+      onPress={onPress}
       className={className}
       style={
         EnableCStyle

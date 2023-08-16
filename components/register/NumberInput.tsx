@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { TextInput, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { router } from "expo-router";
+import { Link, router } from "expo-router";
+import { COLORS } from "../../constants/Theme";
 
 const NumberInput = () => {
   const [countryCode, setCountryCode] = useState("ng");
@@ -22,18 +23,21 @@ const NumberInput = () => {
             source={`https://raw.githubusercontent.com/TuleSimon/xMaterialccp/master/xmaterialccp/src/main/res/drawable/${countryCode.toLowerCase()}.png`}
             style={{ height: 16, width: 21 }}
           />
-          <MaterialIcons
-            className="text-textColor"
-            name="keyboard-arrow-down"
-            size={24}
-            color={"#55575F"}
-          />
+          <Link href="/(auth)/register/modal">
+            <MaterialIcons
+              className="text-textColor"
+              name="keyboard-arrow-down"
+              size={24}
+              color={"#55575F"}
+            />
+          </Link>
         </View>
       </TouchableOpacity>
 
       <TextInput
+        cursorColor={COLORS.scudBlue}
         keyboardType="number-pad"
-        className="w-full outline-none  c text-base"
+        className="w-full outline-none    text-base"
         onBlur={() => setOutline(false)}
         onFocus={() => setOutline(true)}
         onChangeText={(value) => console.log(value)}

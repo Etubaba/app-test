@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, KeyboardAvoidingView } from "react-native";
+import { TouchableOpacity, View, KeyboardAvoidingView, Dimensions } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import Text from "../common/Text";
@@ -8,8 +8,16 @@ import Checkbox from "expo-checkbox";
 import Button from "../common/Button";
 
 const FooterSheet = ({}) => {
+    const DeviceHeight = Dimensions.get("window").height;
+
   return (
-    <KeyboardAvoidingView className="h-[45%]  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full">
+    <KeyboardAvoidingView
+      className={
+        DeviceHeight <= 736
+          ? "h-[50%]  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full"
+          : "h-[45%]  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full"
+      }
+    >
       <View className="flex justify-center items-center">
         <View className="bg-white rounded-[20px] p-[10px]  -mt-6 ">
           <Image
@@ -37,7 +45,7 @@ const FooterSheet = ({}) => {
           Already have an account?
         </Text>
         <TouchableOpacity>
-          <Link href={"/login"}>
+          <Link href={"/(auth)/login/"}>
             <Text EnableCStyle className="text-scudBlue font-bold">
               Log in
             </Text>

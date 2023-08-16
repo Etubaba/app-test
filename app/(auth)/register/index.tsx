@@ -13,7 +13,9 @@ const register = () => {
   const { width, height } = Dimensions.get("window");
 
   return (
-    <View className="">
+    <View
+      className={` w-full h-full bg-black  items-center relative justify-center`}
+    >
       <Stack.Screen
         options={{
           headerShown: false,
@@ -22,6 +24,7 @@ const register = () => {
       <StatusBar backgroundColor="transparent" style="light" />
       <Image
         contentFit="cover"
+        contentPosition="top center"
         source={require("../../../assets/onBoardingBG.png")}
         style={{ height: "100%", width: width }}
       />

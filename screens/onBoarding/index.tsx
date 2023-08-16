@@ -114,9 +114,15 @@ const OnBoarding = () => {
   };
 
   const Footer = () => {
+    const DeviceHeight = Dimensions.get("window").height;
+
     return (
       <View
-        className={`h-full rounded-t-[13px] space-y-2 absolute px-5 top-[98%] bg-white  w-full`}
+        className={
+          DeviceHeight <= 736
+            ? `h-full rounded-t-[13px] space-y-2 absolute px-5 top-[90%] bg-white  w-full`
+            : `h-full rounded-t-[13px] space-y-2 absolute px-5 top-[98%] bg-white  w-full`
+        }
       >
         <View className="p-5 flex flex-col space-y-3 items-center">
           <Text className="font-bold text-xl text-scudDarkMode">

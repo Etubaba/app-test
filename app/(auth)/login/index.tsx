@@ -3,26 +3,27 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { Drawer } from "expo-router/drawer";
-import { router } from "expo-router";
+import { Stack, router } from "expo-router";
+import { COLORS } from "../../../constants/Theme";
+import LoginComponent from "../../../components/login/LoginComponent";
 
 const login = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaView className="bg-white h-full">
       <StatusBar style="auto" backgroundColor="#ffffff00" />
-      <Drawer.Screen
+      <Stack.Screen
         options={{
-          title: "My home",
-          headerStyle: { backgroundColor: "#f4511e" },
-          headerTintColor: "#fff",
+          title: "",
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: COLORS.scudWhite },
+          headerTintColor: "#000",
+          headerShadowVisible: false,
           headerTitleStyle: {
             fontWeight: "bold",
           },
         }}
       />
-      <View>
-        <Text>login</Text>
-        <Text onPress={() => router.back()}>Back</Text>
-      </View>
+      <LoginComponent />
     </SafeAreaView>
   );
 };
