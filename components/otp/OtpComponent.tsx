@@ -15,9 +15,11 @@ import {
 import { Link, router } from "expo-router";
 import Button from "../common/Button";
 import OtpInput from "./OtpInput";
+import useAuth from "../../hooks/useAuth";
 
 const OtpComponent = () => {
   const DeviceHeight = Dimensions.get("window").height;
+  const handleLoggin = useAuth();
 
   return (
     <KeyboardAvoidingView
@@ -79,7 +81,8 @@ const OtpComponent = () => {
         <Button
           className="px-[20px]  py-[15px]   rounded-[10px]"
           onPress={() => {
-            router.push("/(auth)/otp/otp");
+            handleLoggin?.signIn(true);
+            router.push("/home/acceptance_rate");
           }}
         >
           <Text EnableCStyle className="text-center text-white">
