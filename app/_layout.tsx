@@ -15,6 +15,7 @@ export default function () {
   const [fontsLoaded, fontError] = useFonts({
     Gilroy: require("../assets/fonts/Gilroy-Medium.ttf"),
   });
+
   const { IsFirstTimeLoad, setIsFirstTimeLoad } = useOnBoardingStore(
     (state) => state
   );

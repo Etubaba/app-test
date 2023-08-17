@@ -1,12 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 
-const acceptance_rate = () => {
+const BottomSheet = () => {
   return (
     <View>
-      <Text>acceptance_rate</Text>
+      <Text>BottomSheet</Text>
     </View>
   );
 };
 
-export default acceptance_rate;
+export default BottomSheet;

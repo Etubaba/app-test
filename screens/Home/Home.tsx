@@ -22,6 +22,7 @@ import { withTiming } from "react-native-reanimated";
 import { COLORS } from "../../constants/Theme";
 import View from "../../components/common/View";
 import { modes } from "../../interface";
+import { Link } from "expo-router";
 
 export default function Home() {
   const ScudStore = useScudStore((state) => state);
@@ -30,8 +31,6 @@ export default function Home() {
   // console.log(DeviceHeight);
 
   return (
-
-    
     <View2 className="flex-1  items-center justify-center ">
       <StatusBar style="auto" backgroundColor="#ffffff00" />
       <MapView provider={PROVIDER_GOOGLE} style={styles.map}></MapView>
@@ -186,24 +185,26 @@ export default function Home() {
                       : "rounded-md shadow-lg border-[0.2px] p-3  flex justify-between   border-gray-700 h-20"
                   }
                 >
-                  <View
-                    Dark
-                    DarkColor="#23293B"
-                    className="flex-row rounded-md justify-between items-center "
-                  >
-                    <Text
-                      Light
-                      LightColor={COLORS.textColor}
-                      className="text-gray-400 text-[12px]"
+                  <Link href={"/home/acceptance_rate"}>
+                    <View
+                      Dark
+                      DarkColor="#23293B"
+                      className="flex-row rounded-md justify-between items-center "
                     >
-                      Accepatance Rate
-                    </Text>
-                    <MaterialIcons
-                      name="keyboard-arrow-right"
-                      size={15}
-                      color="gray"
-                    />
-                  </View>
+                      <Text
+                        Light
+                        LightColor={COLORS.textColor}
+                        className="text-gray-400 text-[12px]"
+                      >
+                        Accepatance Rate
+                      </Text>
+                      <MaterialIcons
+                        name="keyboard-arrow-right"
+                        size={15}
+                        color="gray"
+                      />
+                    </View>
+                  </Link>
                   <View
                     Dark
                     DarkColor="#23293B"
