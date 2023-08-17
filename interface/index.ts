@@ -26,7 +26,7 @@ export interface Ctx {
 
 export interface TextProps {
   style?: StyleProp<TextStyle> | undefined;
-  children?: string;
+  children?: string | string[];
   className?: string;
   EnableCStyle?: boolean;
   Dark?: boolean;

@@ -60,7 +60,10 @@ const LoginComponent = () => {
   };
 
   return (
-    <KeyboardAvoidingView className="h-full flex flex- relative   bg-white -mt-10 pt-10  space-y-2   px-5    w-full">
+    <KeyboardAvoidingView
+      behavior="padding"
+      className="h-full flex flex- relative   bg-white -mt-10 pt-10  space-y-2   px-5    w-full"
+    >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
         <View className="flex justify-center items-center">
           <View className="rounded-[20px] p-[10px]   ">
