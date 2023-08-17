@@ -81,6 +81,7 @@ const OtpInput = ({
       >
         {otp.map((_, index) => (
           <TextInput
+            returnKeyType="done"
             key={index}
             ref={index === currentinput ? inputRef : null}
             maxLength={1}
