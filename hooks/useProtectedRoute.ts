@@ -20,7 +20,7 @@ function useProtectedRoute(user: any, IsFirstTimeLoad: any) {
                     router.push("/(auth)/register");
                 }
             } else if (user && inAuthGroup) {
-                router.push("/");
+                router.push("/(drawer)/home");
             }
         }
     }, [user, segments, rootNavigationState]);

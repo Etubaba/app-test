@@ -19,8 +19,7 @@ import useAuth from "../../hooks/useAuth";
 
 const OtpComponent = () => {
   const DeviceHeight = Dimensions.get("window").height;
-  const handleLoggin = useAuth();
-
+  const Login = useAuth();
   return (
     <KeyboardAvoidingView
       // behavior="padding"
@@ -81,8 +80,9 @@ const OtpComponent = () => {
         <Button
           className="px-[20px]  py-[15px]   rounded-[10px]"
           onPress={() => {
-            handleLoggin?.signIn(true);
-            router.push("/home/acceptance_rate");
+            Login?.signIn({ name: "abat" });
+            // handleLoggin?.signIn(true);
+            // router.push("/home/acceptance_rate");
           }}
         >
           <Text EnableCStyle className="text-center text-white">

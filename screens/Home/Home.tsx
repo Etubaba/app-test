@@ -22,7 +22,8 @@ import { withTiming } from "react-native-reanimated";
 import { COLORS } from "../../constants/Theme";
 import View from "../../components/common/View";
 import { modes } from "../../interface";
-import { Link } from "expo-router";
+import { Link, Stack } from "expo-router";
+import { Drawer } from "expo-router/drawer";
 
 export default function Home() {
   const ScudStore = useScudStore((state) => state);

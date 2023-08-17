@@ -16,7 +16,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 const LoginComponent = () => {
-  const TAB_WIDTH = 189;
+  const TAB_WIDTH = 180;
   const offset = useSharedValue(0);
 
   const animatedStyles = useAnimatedStyle(() => ({
@@ -46,10 +46,14 @@ const LoginComponent = () => {
           style={[animatedStyles]}
         />
         <TouchableOpacity onPress={() => handlePress("email")}>
-          <Text className="z-10">Email address</Text>
+          <Text EnableCStyle className="z-10">
+            Email address
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handlePress("phone")}>
-          <Text className="z-10">Phone number</Text>
+          <Text EnableCStyle className="z-10">
+            Phone number
+          </Text>
         </TouchableOpacity>
       </View>
     );
