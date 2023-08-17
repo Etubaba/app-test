@@ -19,12 +19,7 @@ import useAuth from "../../hooks/useAuth";
 
 const OtpComponent = () => {
   const DeviceHeight = Dimensions.get("window").height;
-<<<<<<< HEAD
   const Login = useAuth();
-=======
-  const handleLoggin = useAuth();
-
->>>>>>> 1fcc85c5146524cf16a753cccc876eeb787344af
   return (
     <KeyboardAvoidingView
       // behavior="padding"
