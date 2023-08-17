@@ -1,22 +1,59 @@
-import { TouchableOpacity, View, KeyboardAvoidingView, Dimensions } from "react-native";
-import React from "react";
+import {
+  TouchableOpacity,
+  View,
+  Dimensions,
+  Platform,
+  Keyboard,
+  KeyboardAvoidingView,
+  KeyboardAvoidingViewComponent,
+} from "react-native";
+import React, { useEffect, useState } from "react";
 import { Image } from "expo-image";
 import Text from "../common/Text";
 import NumberInput from "./NumberInput";
 import { Link } from "expo-router";
 import Checkbox from "expo-checkbox";
 import Button from "../common/Button";
+import Animated, { useSharedValue, withSpring } from "react-native-reanimated";
 
 const FooterSheet = ({}) => {
-    const DeviceHeight = Dimensions.get("window").height;
+  const [KeyBoardIsOpen, setKeyBoardIsOpen] = useState(false);
+  const DeviceHeight = Dimensions.get("window").height;
+  const height = useSharedValue(380);
+
+  const handleKeyboardDidShow = () => {
+    setKeyBoardIsOpen(!KeyBoardIsOpen);
+  };
+
+  useEffect(() => {
+    if (KeyBoardIsOpen) {
+      height.value = withSpring(530);
+    } else {
+      height.value = withSpring(380);
+    }
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      handleKeyboardDidShow
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      handleKeyboardDidShow
+    );
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, [KeyBoardIsOpen]);
 
   return (
-    <KeyboardAvoidingView
-      className={
-        DeviceHeight <= 736
-          ? "h-[50%]  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full"
-          : "h-[45%]  z-50 rounded-t-[13px]  space-y-2  absolute px-5 bottom-0 bg-white  w-full"
-      }
+    <Animated.View
+      style={{
+        height: Platform.OS == "ios" && KeyBoardIsOpen ? height : 380,
+      }}
+      className={` ${
+        DeviceHeight <= 736 ? "h-[50%] " : "h-[45%]"
+      } z-50 rounded-t-[13px] space-y-2  absolute px-5 bottom-0 bg-white  w-full`}
     >
       <View className="flex justify-center items-center">
         <View className="bg-white rounded-[20px] p-[10px]  -mt-6 ">
@@ -77,7 +114,7 @@ const FooterSheet = ({}) => {
           Continue
         </Text>
       </Button>
-    </KeyboardAvoidingView>
+    </Animated.View>
   );
 };
 

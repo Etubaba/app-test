@@ -1,6 +1,6 @@
 import { Image } from "expo-image";
 import React, { useState } from "react";
-import { TextInput, View } from "react-native";
+import { TextInput, View, KeyboardAvoidingView } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Link, router } from "expo-router";
@@ -11,6 +11,7 @@ const NumberInput = () => {
   const [outline, setOutline] = useState(false);
 
   return (
+    // <KeyboardAvoidingView behavior={"padding"}>
     <View
       className={`w-full my-5  rounded-[10px] flex-row items-center justify-start py-2  border ${
         outline ? "border-scudBlue" : "border-bordercolor"
@@ -35,6 +36,7 @@ const NumberInput = () => {
       </TouchableOpacity>
 
       <TextInput
+        returnKeyType="done"
         cursorColor={COLORS.scudBlue}
         keyboardType="number-pad"
         className="w-full outline-none    text-base"
@@ -43,6 +45,7 @@ const NumberInput = () => {
         onChangeText={(value) => console.log(value)}
       />
     </View>
+    // </KeyboardAvoidingView>
   );
 };
 

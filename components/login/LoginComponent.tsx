@@ -1,4 +1,4 @@
-import { View, KeyboardAvoidingView, Keyboard } from "react-native";
+import { View, KeyboardAvoidingView, Keyboard, Platform } from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import Text from "../common/Text";
@@ -57,7 +57,7 @@ const LoginComponent = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior="padding"
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       className="h-full flex flex- relative   bg-white -mt-10 pt-10  space-y-2   px-5    w-full"
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
