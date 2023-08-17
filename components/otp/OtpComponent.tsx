@@ -8,42 +8,16 @@ import {
 import React from "react";
 import { Image } from "expo-image";
 import Text from "../common/Text";
-import NumberInput from "../register/NumberInput";
 import {
   TouchableOpacity,
   TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
 import { Link, router } from "expo-router";
 import Button from "../common/Button";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from "react-native-reanimated";
 import OtpInput from "./OtpInput";
 
 const OtpComponent = () => {
-  const TAB_WIDTH = 180;
-  const offset = useSharedValue(0);
   const DeviceHeight = Dimensions.get("window").height;
-  const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{ translateX: offset.value }],
-  }));
-
-  const handlePress = (tab: string) => {
-    const newOffset = (() => {
-      switch (tab) {
-        case "email":
-          return 0;
-        case "phone":
-          return TAB_WIDTH;
-        default:
-          return 0;
-      }
-    })();
-
-    offset.value = withTiming(newOffset);
-  };
 
   return (
     <KeyboardAvoidingView
