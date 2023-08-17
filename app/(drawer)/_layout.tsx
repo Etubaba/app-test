@@ -8,6 +8,7 @@ import NavLink from "../../components/SideNav/NavLinks";
 import DrawerItems from "../../components/SideNav/DrawerItems";
 import { COLORS } from "../../constants/Theme";
 import { modes } from "../../interface";
+import { Stack } from "expo-router";
 
 function CustomDrawerContent(props: DrawerContentComponentProps) {
   const ScudStore = useScudStore((state) => state);
@@ -37,23 +38,30 @@ export default function () {
   const { theme } = useThemeStore((state) => state);
 
   return (
-    <Drawer
-      defaultStatus="closed"
-      drawerContent={(props: DrawerContentComponentProps) => (
-        <CustomDrawerContent {...props} />
-      )}
-      screenOptions={{
-        // drawerHideStatusBarOnOpen: true,
-        swipeEnabled: false,
-        headerShown: false,
-        drawerType: "front",
-        drawerStyle: {
-          borderBottomEndRadius: 50,
-          borderTopEndRadius: 50,
-          backgroundColor:
-            theme == modes.light ? COLORS.scudWhite : COLORS.scudDarkMode2,
-        },
-      }}
-    />
+    <>
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Drawer
+        defaultStatus="closed"
+        drawerContent={(props: DrawerContentComponentProps) => (
+          <CustomDrawerContent {...props} />
+        )}
+        screenOptions={{
+          // drawerHideStatusBarOnOpen: true,
+          swipeEnabled: false,
+          headerShown: false,
+          drawerType: "front",
+          drawerStyle: {
+            borderBottomEndRadius: 50,
+            borderTopEndRadius: 50,
+            backgroundColor:
+              theme == modes.light ? COLORS.scudWhite : COLORS.scudDarkMode2,
+          },
+        }}
+      />
+    </>
   );
 }
