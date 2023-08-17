@@ -6,20 +6,30 @@ import {
   ClipboardStatic,
   NativeSyntheticEvent,
   TextInputChangeEventData,
+  Dimensions,
 } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Link, router } from "expo-router";
 import { COLORS } from "../../constants/Theme";
 import * as Clipboard from "expo-clipboard";
+import Text from "../common/Text";
 
-const OtpInput = () => {
+const OtpInput = ({
+  error,
+  setCodeState,
+}: {
+  error?: boolean;
+  setCodeState?: React.Dispatch<React.SetStateAction<string>>;
+}) => {
   const [countryCode, setCountryCode] = useState("ng");
   const [outline, setOutline] = useState(false);
   const [currentinput, setCurrentInput] = useState<number>();
   const [otp, setOtp] = useState(new Array(6).fill(""));
 
   const inputRef: RefObject<TextInput> = React.createRef();
+  const deviceWidth = Dimensions.get("screen").width;
+  console.log(deviceWidth.toFixed());
 
   const handlePaste = async (event: string) => {
     const newOtp = event.slice(0, 6).split("");
@@ -65,27 +75,41 @@ const OtpInput = () => {
     inputRef.current?.focus();
   }, [currentinput]);
   return (
-    <View
-      className={`w-full my-5   flex-row items-center justify-center flex space-x-1`}
-    >
-      {otp.map((_, index) => (
-        <TextInput
-          key={index}
-          ref={index === currentinput ? inputRef : null}
-          // maxLength={1}
-          onChangeText={(e) => handleOnChange(e, index)}
-          value={otp[index]}
-          cursorColor={COLORS.scudBlue}
-          keyboardType="number-pad"
-          className={` text-center outline-none border form-control border-bordercolor  focus:border-scudBlue  focus:outline-none focus:ring-1 focus:ring-scudBlue focus:ring-opacity-2 rounded-[10px] py-2  px-3 w-12     text-base`}
-          // onBlur={() => {
-          //   setOutline(false);
-          // }}
-          // onFocus={() => {
-          //   setOutline(true), setCurrentInput(index);
-          // }}
-        />
-      ))}
+    <View className="flex flex-col items-center">
+      <View
+        className={` my-5   flex-row items-center justify-center flex space-x-1`}
+      >
+        {otp.map((_, index) => (
+          <TextInput
+            key={index}
+            ref={index === currentinput ? inputRef : null}
+            maxLength={1}
+            onChangeText={(e) => handleOnChange(e, index)}
+            value={otp[index]}
+            cursorColor={COLORS.scudBlue}
+            keyboardType="number-pad"
+            className={` text-center outline-none border form-control border-red-500 ${
+              error ? "border-red-500" : "border-bordercolor"
+            }  focus:border-scudBlue  focus:outline-none focus:ring-1 focus:ring-scudBlue focus:ring-opacity-2 rounded-[10px] py-2  px-3 ${
+              deviceWidth.toFixed() < "393" ? "w-10" : "w-12"
+            }     text-base`}
+            // onBlur={() => {
+            //   setOutline(false);
+            // }}
+            // onFocus={() => {
+            //   setOutline(true), setCurrentInput(index);
+            // }}
+          />
+        ))}
+      </View>
+      {error && (
+        <View className="flex mb-5 flex-row rounded-lg w-4/5 bg-scudRed/5 p-2 items-center  justify-center space-x-2  ">
+          <MaterialIcons name="error-outline" size={20} color="red" />
+          <Text EnableCStyle className="text-scudRed">
+            You’ve entered an incorrect code
+          </Text>
+        </View>
+      )}
     </View>
   );
 };

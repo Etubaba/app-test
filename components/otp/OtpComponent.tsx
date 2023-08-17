@@ -38,7 +38,7 @@ const OtpComponent = () => {
           Enter the 6 digit code sent to {"\n"} 09093284414
         </Text>
         <TouchableWithoutFeedback accessible={false} onPress={Keyboard.dismiss}>
-          <OtpInput />
+          <OtpInput error={false} />
         </TouchableWithoutFeedback>
 
         <View className="flex mb-5 flex-row rounded-lg bg-scudLightBlue p-3 items-center w-full justify-center space-x-2  ">
