@@ -1,4 +1,10 @@
-import { View, KeyboardAvoidingView, Keyboard, Dimensions } from "react-native";
+import {
+  View,
+  KeyboardAvoidingView,
+  Keyboard,
+  Dimensions,
+  Platform,
+} from "react-native";
 import React from "react";
 import { Image } from "expo-image";
 import Text from "../common/Text";
@@ -41,10 +47,10 @@ const OtpComponent = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior="padding"
-      className="h-full flex-1 relative bg-white   flex-col items-center     pt-10  space-y-2   px-5    w-full"
+      // behavior="padding"
+      className="h-full relative bg-white     flex-col items-center     pt-10  space-y-2   px-5    w-full"
     >
-      <View className="bg-white shadow-2xl border w-full z-20   absolute -top-20  border-scudLightBlue p-3 rounded-2xl">
+      <View className="bg-white shadow-2xl border w-full z-20 space-y-3   absolute -top-20  border-scudLightBlue p-3 pb-10 rounded-2xl">
         <Text
           EnableCStyle
           className="text-center mt-2 tracking-wide text-scudDarkMode  text-[24px] font-bold"
@@ -71,14 +77,11 @@ const OtpComponent = () => {
             </Text>
           </TouchableOpacity>
         </View>
-      </View>
-
-      <View className="justify-end mb-10 flex-1   w-full">
         <View
           className={
             DeviceHeight <= 736
-              ? "flex mb-5 flex-row  relative bottom-[30%] p-3 items-center w-full justify-center space-x-2  "
-              : "flex mb-5 flex-row  relative bottom-[60%] p-3 items-center w-full justify-center space-x-2  "
+              ? "flex  flex-row -mb-20  p-3 items-center w-full justify-center space-x-2  "
+              : "flex -mb-20 flex-row   p-3 items-center w-full justify-center space-x-2  "
           }
         >
           <Text EnableCStyle className="text-textColor">
@@ -90,8 +93,17 @@ const OtpComponent = () => {
             </Text>
           </TouchableOpacity>
         </View>
+      </View>
+
+      <View
+        className={
+          Platform.OS == "android"
+            ? " flex-1 h-[65%] absolute  justify-end   w-full"
+            : " flex-1 absolute  h-[70%]   justify-end  w-full"
+        }
+      >
         <Button
-          className="px-[20px]  py-[15px]  rounded-[10px]"
+          className="px-[20px]  py-[15px]   rounded-[10px]"
           onPress={() => {
             router.push("/(auth)/otp/otp");
           }}

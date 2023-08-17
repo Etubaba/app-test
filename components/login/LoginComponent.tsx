@@ -16,7 +16,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 const LoginComponent = () => {
-  const TAB_WIDTH = 180;
+  const TAB_WIDTH = 189;
   const offset = useSharedValue(0);
 
   const animatedStyles = useAnimatedStyle(() => ({
@@ -42,18 +42,14 @@ const LoginComponent = () => {
     return (
       <View className="w-full rounded-lg my-3 p-3 relative bg-scudLightBlue justify-around items-center flex flex-row">
         <Animated.View
-          className="rounded-lg p-4 absolute mx-1  bg-white w-1/2 left-0"
+          className="rounded-lg p-4 absolute mx-1 shadow-lg  bg-white w-1/2 left-0"
           style={[animatedStyles]}
         />
-        <TouchableOpacity>
-          <Text onPress={() => handlePress("email")} className="z-10">
-            Email address
-          </Text>
+        <TouchableOpacity onPress={() => handlePress("email")}>
+          <Text className="z-10">Email address</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text onPress={() => handlePress("phone")} className="z-10">
-            Phone number
-          </Text>
+        <TouchableOpacity onPress={() => handlePress("phone")}>
+          <Text className="z-10">Phone number</Text>
         </TouchableOpacity>
       </View>
     );

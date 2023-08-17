@@ -17,25 +17,24 @@ const OtpInput = () => {
   const [countryCode, setCountryCode] = useState("ng");
   const [outline, setOutline] = useState(false);
   const [currentinput, setCurrentInput] = useState<number>();
-  const [otp, setOtp] = useState<string[]>(Array(6).fill(""));
-  const inputRefs = useRef<TextInput[]>([]);
+  const [otp, setOtp] = useState(new Array(6).fill(""));
 
   const inputRef: RefObject<TextInput> = React.createRef();
 
   const handlePaste = async (event: string) => {
-    // event.preventDefault();
-    const clipboardData = await navigator.clipboard.readText();
-    const pastedOtp = event.substring(0, 6).split("");
+    const newOtp = event.slice(0, 6).split("");
+    setOtp(newOtp);
 
-    setOtp((prevOtp) => {
-      const newOtp = [...prevOtp];
-      pastedOtp.forEach((digit, index) => {
-        if (index < newOtp.length) {
-          newOtp[index] = digit;
-        }
-      });
-      return newOtp;
+    newOtp.forEach((digit, index) => {
+      if (inputRef.current) {
+        inputRef.current.setNativeProps({ text: digit });
+        //  inputRef.current? = inputRef.current?.next;
+      }
     });
+
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
     //    signin
     //      ? handleOTPsubmit4Signin(pastedOtp.join(""))
     //      : handleOTPsubmit4Signup(pastedOtp.join(""));
@@ -43,26 +42,23 @@ const OtpInput = () => {
   const handleOnChange = async (value: string, index: number) => {
     console.log(value, "here");
 
-    if (value === "") return;
-    const copiedContent = await Clipboard.getStringAsync();
-    if (copiedContent === "") return;
-    const isPasted = value.includes(copiedContent);
-    console.log(isPasted, "p");
-
-    // if (isPasted) {
-    //   handlePaste(value);
-    // } else {
-    console.log(index);
-
-    if (value === "") {
-      setCurrentInput(index - 1);
+    if (value.length === 6) {
+      await handlePaste(value);
     } else {
-      setCurrentInput(index + 1);
+      const newOTP = [...otp];
+      newOTP[index] = value.substring(value.length - 1);
+      setOtp(newOTP);
+
+      if (value === "") setCurrentInput(index - 1);
+      else setCurrentInput(index + 1);
+
+      if (currentinput === 5) {
+        const otpCode = newOTP.join("");
+        // signin
+        //   ? handleOTPsubmit4Signin(otpCode)
+        //   : handleOTPsubmit4Signup(otpCode);
+      }
     }
-    const newOTP = [...otp];
-    newOTP[index] = value.substring(value.length - 1);
-    setOtp(newOTP);
-    // }
   };
 
   useEffect(() => {
@@ -70,28 +66,24 @@ const OtpInput = () => {
   }, [currentinput]);
   return (
     <View
-      className={`w-full my-5   flex-row items-center justify-start flex space-x-1`}
+      className={`w-full my-5   flex-row items-center justify-center flex space-x-1`}
     >
       {otp.map((_, index) => (
         <TextInput
           key={index}
           ref={index === currentinput ? inputRef : null}
-          maxLength={1}
+          // maxLength={1}
           onChangeText={(e) => handleOnChange(e, index)}
           value={otp[index]}
           cursorColor={COLORS.scudBlue}
           keyboardType="number-pad"
-          className={` text-center outline-none border rounded-[10px] py-2  px-3   ${
-            outline && currentinput == index
-              ? "border-scudBlue"
-              : "border-bordercolor"
-          }  text-base`}
-          onBlur={() => {
-            setOutline(false);
-          }}
-          onFocus={() => {
-            setOutline(true), setCurrentInput(index);
-          }}
+          className={` text-center outline-none border form-control border-bordercolor  focus:border-scudBlue  focus:outline-none focus:ring-1 focus:ring-scudBlue focus:ring-opacity-2 rounded-[10px] py-2  px-3 w-12     text-base`}
+          // onBlur={() => {
+          //   setOutline(false);
+          // }}
+          // onFocus={() => {
+          //   setOutline(true), setCurrentInput(index);
+          // }}
         />
       ))}
     </View>
