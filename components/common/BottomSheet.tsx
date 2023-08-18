@@ -12,18 +12,18 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { BottomsheetType } from "../../interface";
 
 const screenHeight = Dimensions.get("window").height;
 const MAX_TRANSLATE_Y = -screenHeight + 50;
 
-const BottomSheet = ({ children }: { children: React.JSX.Element }) => {
+const BottomSheet = ({ children, onClose, open }: BottomsheetType) => {
+  if (!open) return;
   const AnimatedView = Animated.View;
 
   const offsetY = useSharedValue(0);
 
-  const context = useSharedValue({ y: 0 });
-
-  const savedOffset = useSharedValue(0);
+  const savedOffset = useSharedValue({ y: 0 });
 
   const scrollTo = useCallback((destination: number) => {
     "worklet";
@@ -32,16 +32,14 @@ const BottomSheet = ({ children }: { children: React.JSX.Element }) => {
 
   const dragGesture = Gesture.Pan()
     .onStart(() => {
-      context.value = { y: offsetY.value };
+      savedOffset.value = { y: offsetY.value };
     })
     .onUpdate((e) => {
       // offsetY.value = e.translationY + savedOffset.value;
-      offsetY.value = e.translationY + context.value.y;
+      offsetY.value = e.translationY + savedOffset.value.y;
       offsetY.value = Math.max(offsetY.value, MAX_TRANSLATE_Y);
     })
     .onEnd((e) => {
-      savedOffset.value = offsetY.value;
-
       if (offsetY.value > -screenHeight / 3) {
         scrollTo(0);
       } else if (offsetY.value < -screenHeight / 2) {
@@ -68,16 +66,27 @@ const BottomSheet = ({ children }: { children: React.JSX.Element }) => {
   });
 
   return (
-    <GestureHandlerRootView>
-      <AnimatedView style={[styles.sheetContainer, animatedSheet]}>
-        <GestureDetector gesture={dragGesture}>
-          <View className="w-full border-b border-bordercolor justify-center flex items-center rounded-tr-[20px] rounded-tl-[20px] h-10">
-            <View className="bg-gray-600 h-1.5 w-20  rounded-xl"></View>
-          </View>
-        </GestureDetector>
-        <View className="p-2">{children}</View>
-      </AnimatedView>
-    </GestureHandlerRootView>
+    <>
+      <AnimatedView
+        pointerEvents="none"
+        style={[
+          {
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: "rgba(0,0,0,0.4)",
+          },
+        ]}
+      />
+      <GestureHandlerRootView>
+        <AnimatedView style={[styles.sheetContainer, animatedSheet]}>
+          <GestureDetector gesture={dragGesture}>
+            <View className="w-full border-b border-bordercolor justify-center flex items-center rounded-tr-[20px] rounded-tl-[20px] h-10">
+              <View className="bg-gray-600 h-1.5 w-20  rounded-xl"></View>
+            </View>
+          </GestureDetector>
+          <View className="p-2">{children}</View>
+        </AnimatedView>
+      </GestureHandlerRootView>
+    </>
   );
 };
 
