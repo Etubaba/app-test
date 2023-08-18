@@ -80,9 +80,9 @@ const OtpComponent = () => {
         <Button
           className="px-[20px]  py-[15px]   rounded-[10px]"
           onPress={() => {
-            Login?.signIn({ name: "abat" });
+            // Login?.signIn({ name: "abat" });
             // handleLoggin?.signIn(true);
-            // router.push("/home/acceptance_rate");
+            router.push("/home/acceptance_rate");
           }}
         >
           <Text EnableCStyle className="text-center text-white">
