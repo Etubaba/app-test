@@ -14,6 +14,7 @@ import { Link, router } from "expo-router";
 import { COLORS } from "../../constants/Theme";
 import * as Clipboard from "expo-clipboard";
 import Text from "../common/Text";
+import * as Haptics from "expo-haptics";
 
 const OtpInput = ({
   error,
@@ -29,8 +30,10 @@ const OtpInput = ({
 
   const inputRef: RefObject<TextInput> = React.createRef();
   const deviceWidth = Dimensions.get("screen").width;
-  console.log(deviceWidth.toFixed());
-
+  // console.log(deviceWidth.toFixed());
+  if (error) {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+  }
   const handlePaste = async (event: string) => {
     const newOtp = event.slice(0, 6).split("");
     setOtp(newOtp);
@@ -45,12 +48,13 @@ const OtpInput = ({
     if (inputRef.current) {
       inputRef.current.focus();
     }
+
     //    signin
     //      ? handleOTPsubmit4Signin(pastedOtp.join(""))
     //      : handleOTPsubmit4Signup(pastedOtp.join(""));
   };
   const handleOnChange = async (value: string, index: number) => {
-    console.log(value, "here");
+    // console.log(value, "here");
 
     if (value.length === 6) {
       await handlePaste(value);

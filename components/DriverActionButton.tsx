@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Image,
   Platform,
@@ -24,6 +24,7 @@ import Animated, {
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { Ctx } from "../interface";
 import Text from "../components/common/Text";
+import * as Haptics from "expo-haptics";
 
 const BUTTON_WIDTH = 60;
 const BUTTON_HEIGHT = 165;
@@ -40,7 +41,13 @@ const V_SWIPE_RANGE = BUTTON_HEIGHT - 2 * BUTTON_PADDING - SWIPEABLE_DIMENSIONS;
 function DriverActionButton() {
   const Y = useSharedValue<number>(0);
   const [toggled, setToggled] = useState<Boolean>(true);
-
+  useEffect(() => {
+    if (!toggled) {
+      Haptics.selectionAsync();
+    } else {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    }
+  }, [toggled]);
   const animateGestureHandler = useAnimatedGestureHandler({
     onStart: (_, ctx: Ctx) => {
       ctx.completed = toggled;

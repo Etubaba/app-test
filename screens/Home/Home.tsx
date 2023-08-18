@@ -22,7 +22,7 @@ import { withTiming } from "react-native-reanimated";
 import { COLORS } from "../../constants/Theme";
 import View from "../../components/common/View";
 import { modes } from "../../interface";
-import { Link, Stack } from "expo-router";
+import { Link, Stack, router } from "expo-router";
 import { Drawer } from "expo-router/drawer";
 
 export default function Home() {
@@ -83,7 +83,9 @@ export default function Home() {
                 Platform.OS == "android" ? "w-36 space-y-2" : "w-40 space-y-2"
               }
             >
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.push("/(drawer)/activate/activate")}
+              >
                 <View
                   Dark
                   DarkColor="#23293B"

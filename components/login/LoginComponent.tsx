@@ -101,7 +101,7 @@ const LoginComponent = () => {
         <Button
           className="px-[20px]  py-[15px]  rounded-[10px]"
           onPress={() => {
-            router.push("/(auth)/otp/otp");
+            router.replace("/(auth)/otp/otp");
           }}
         >
           <Text EnableCStyle className="text-center text-white">

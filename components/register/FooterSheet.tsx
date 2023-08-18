@@ -82,7 +82,7 @@ const FooterSheet = ({}) => {
           Already have an account?
         </Text>
         <TouchableOpacity>
-          <Link href={"/(auth)/login/"}>
+          <Link replace href={"/(auth)/login/"}>
             <Text EnableCStyle className="text-scudBlue font-bold">
               Log in
             </Text>
