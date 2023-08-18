@@ -5,6 +5,7 @@ import {
   TextStyle,
   ViewStyle,
 } from "../node_modules/react-native/Libraries/StyleSheet/StyleSheetTypes";
+import { Control, FieldErrors } from "react-hook-form";
 
 export interface NavLinks {
   name: string;
@@ -15,8 +16,8 @@ export interface NavLinks {
 export interface DrawerItemsprops {
   label: string;
   onPress:
-    | (((event: GestureResponderEvent) => void) & (() => void))
-    | undefined;
+  | (((event: GestureResponderEvent) => void) & (() => void))
+  | undefined;
   icon: string | number | string[] | ImageSource | ImageSource[] | null;
 }
 
@@ -34,8 +35,8 @@ export interface TextProps {
   DarkColor?: string;
   LightColor?: string;
   onPress?:
-    | (((event: GestureResponderEvent) => void) & (() => void))
-    | undefined;
+  | (((event: GestureResponderEvent) => void) & (() => void))
+  | undefined;
 }
 export interface ViewProps {
   style?: StyleProp<ViewStyle> | undefined;
@@ -52,9 +53,10 @@ export interface ButtonProps {
   style?: StyleProp<ViewStyle> | undefined;
   children?: React.ReactNode;
   className?: string;
+  disabled?: boolean;
   onPress:
-    | (((event: GestureResponderEvent) => void) & (() => void))
-    | undefined;
+  | (((event: GestureResponderEvent) => void) & (() => void))
+  | undefined;
 }
 
 export interface AuthContextType {
@@ -80,3 +82,10 @@ export type BottomsheetType = {
   open: boolean;
   onClose: () => void;
 };
+
+
+export interface useFormProps {
+  control?: Control<{ phoneNumber: string; }, any>, error?: FieldErrors<{
+    phoneNumber: string;
+  }>
+}

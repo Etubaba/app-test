@@ -3,15 +3,19 @@ import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ButtonProps } from "../../interface";
 
-const Button = ({ children, className, style, onPress }: ButtonProps) => {
+const Button = ({
+  children,
+  className,
+  style,
+  onPress,
+  disabled,
+}: ButtonProps) => {
   return (
-    <TouchableOpacity activeOpacity={0.7}
-      onPress={onPress}
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={disabled ? () => {} : onPress}
       style={[style]}
-      className={
-        "bg-scudBlue " +
-        className
-      }
+      className={`${disabled ? "bg-scudBlue/30" : "bg-scudBlue"} ` + className}
     >
       {children}
     </TouchableOpacity>

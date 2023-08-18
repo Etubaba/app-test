@@ -1,0 +1,14 @@
+{
+  "cli": {
+    "version": ">= 3.3.2"
+  },
+  "build": {
+    "preview": {
+      "channel": "preview"
+    },
+    "production": {
+      "channel": "production"
+    }
+  }
+ 
+}

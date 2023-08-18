@@ -39,7 +39,7 @@ const OtpComponent = () => {
           Enter the 6 digit code sent to {"\n"} 09093284414
         </Text>
         <TouchableWithoutFeedback accessible={false} onPress={Keyboard.dismiss}>
-          <OtpInput error={!false} />
+          <OtpInput error={false} />
         </TouchableWithoutFeedback>
 
         <View className="flex mb-5 flex-row rounded-lg bg-scudLightBlue p-3 items-center w-full justify-center space-x-2  ">
@@ -80,9 +80,9 @@ const OtpComponent = () => {
         <Button
           className="px-[20px]  py-[15px]   rounded-[10px]"
           onPress={() => {
-            // Login?.signIn({ name: "abat" });
+            Login?.signIn({ name: "abat" });
             // handleLoggin?.signIn(true);
-            router.push("/home/acceptance_rate");
+            // router.push("/home/acceptance_rate");
           }}
         >
           <Text EnableCStyle className="text-center text-white">

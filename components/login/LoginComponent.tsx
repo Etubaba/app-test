@@ -14,6 +14,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
+import { useForm } from "react-hook-form";
 
 const LoginComponent = () => {
   const TAB_WIDTH = 180;
@@ -58,7 +59,16 @@ const LoginComponent = () => {
       </View>
     );
   };
-
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm({
+    defaultValues: {
+      phoneNumber: "",
+    },
+  });
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -85,7 +95,7 @@ const LoginComponent = () => {
           Login with your email or mobile number
         </Text>
         <SwitchLoginMethod />
-        <NumberInput />
+        <NumberInput control={control} />
         <View className="flex mb-5 flex-row items-center w-full justify-center space-x-2  ">
           <Text EnableCStyle className="text-textColor">
             Don’t have an account?

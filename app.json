@@ -4,7 +4,7 @@
       "typedRoutes": true
     },
     "name": "Scud Driver Lite",
-    "slug": "Scud Driver",
+    "slug": "Scud-Driver",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,19 +15,39 @@
       "resizeMode": "contain",
       "backgroundColor": "#0333FF"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dom000.ScudDriver"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#0333FF"
-      }
+      },
+      "package": "com.dom000.ScudDriver"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-router"]
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "641249d8-5d9c-495e-bf8d-181570305e0e"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/641249d8-5d9c-495e-bf8d-181570305e0e"
+    }
   }
 }
